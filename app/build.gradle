@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "io.github.spoiq_auth_module"
+        minSdkVersion 15
+        targetSdkVersion 20
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    configurations {
+        apt
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.netflix.rxjava:rxjava-core:0.19.2'
+    compile 'com.netflix.rxjava:rxjava-android:0.19.2'
+    compile 'com.squareup.mortar:mortar:0.16'
+    compile 'com.squareup.retrofit:retrofit:1.6.1'
+    compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
+    apt 'com.squareup.dagger:dagger-compiler:1.2.1'
+    compile 'com.jakewharton:butterknife:5.1.1'
+    compile 'com.squareup.flow:flow:0.4'
+    compile 'de.greenrobot:eventbus:2.2.1'
+    compile 'com.andreabaccega:android-form-edittext:1.0.5@aar'
+}
+
+android.applicationVariants.all { variant ->
+    aptOutput = file("${project.buildDir}/source/apt_generated/${variant.dirName}")
+    println "****************************"
+    println "variant: ${variant.name}"
+    println "manifest:  ${variant.processResources.manifestFile}"
+    println "aptOutput:  ${aptOutput}"
+    println "****************************"
+
+    variant.javaCompile.doFirst {
+        println "*** compile doFirst ${variant.name}"
+        aptOutput.mkdirs()
+        variant.javaCompile.options.compilerArgs += [
+                '-processorpath', configurations.apt.getAsPath(),
+                '-AandroidManifestFile=' + variant.processResources.manifestFile,
+                '-s', aptOutput
+        ]
+    }
+}

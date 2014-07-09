@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<io.github.spoiq_auth_module.views.CreateAccountView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#bec9cc"
+    android:orientation="vertical">
+
+    <com.andreabaccega.widget.FormEditText
+        android:id="@+id/edit_email_register"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:hint="@string/hint_username"
+        android:inputType="textEmailAddress"
+        whatever:testType="email" />
+
+    <com.andreabaccega.widget.FormEditText
+        android:id="@+id/edit_first_name"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_email_register"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/hint_first_name"
+        whatever:testType="personName" />
+
+    <com.andreabaccega.widget.FormEditText
+        android:id="@+id/edit_last_name"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/edit_first_name"
+        android:layout_marginTop="10dp"
+        android:hint="@string/hint_last_name"
+        whatever:testType="personFullName" />
+
+    <com.andreabaccega.widget.FormEditText
+        android:id="@+id/edit_password_field"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_last_name"
+        android:layout_marginTop="10dp"
+        android:hint="@string/text_hint_pwd"
+        android:inputType="textPassword"
+        whatever:testType="numeric" />
+
+    <Button
+        android:id="@+id/btn_reg_acc"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_password_field"
+        android:layout_marginTop="20dp"
+        android:text="@string/text_btn_create"
+        android:textColor="#fff" />
+</io.github.spoiq_auth_module.views.CreateAccountView>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.github.spoiq_auth_module.MainView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#bec9cc">
+
+    <com.andreabaccega.widget.FormEditText
+        android:id="@+id/edit_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="@string/hint_username"
+        android:inputType="textEmailAddress"
+        whatever:testType="email" />
+
+    <com.andreabaccega.widget.FormEditText
+        android:id="@+id/edit_password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_login"
+        android:layout_marginTop="10dp"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        whatever:testType="numeric" />
+
+    <Button
+        android:id="@+id/btn_log_in"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_password"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_log_in" />
+
+    <Button
+        android:id="@+id/btn_create_account"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_log_in"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_create_new_account"/>
+
+    <Button
+        android:id="@+id/btn_reset_password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/text_forgot_password"/>
+</io.github.spoiq_auth_module.MainView>
